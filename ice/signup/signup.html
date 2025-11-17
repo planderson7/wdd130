@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Feed Sign Up</title>
+
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+background-color: #6d5433;
+font-family: Arial, sans-serif;
+}
+
+#formContainer {
+background-color: white;
+max-width: 400px;
+margin: 40px auto;
+border-radius: 20px;
+border: 8px solid #1a2a6c;
+overflow: hidden;
+position: relative;
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button */
+#closeBtn {
+position: absolute;
+top: 8px;
+right: 8px;
+background-color: transparent;
+color: black;
+border: none;
+font-weight: bold;
+font-size: 20px;
+cursor: pointer;
+}
+
+/* Header image and text overlay */
+header {
+position: relative;
+}
+
+header img {
+width: 100%;
+display: block;
+height: auto;
+}
+
+header h1,
+header h2 {
+position: absolute;
+width: 100%;
+text-align: center;
+color: white;
+text-shadow: 2px 2px 4px black;
+}
+
+header h1 {
+top: 25%;
+font-size: 2em;
+}
+
+header h2 {
+top: 45%;
+font-size: 1.3em;
+}
+
+/* Main section */
+main {
+padding: 20px;
+}
+
+main h3 {
+text-align: center;
+margin-bottom: 15px;
+}
+
+form {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px 15px;
+align-items: center;
+}
+
+form label {
+text-align: right;
+font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+padding: 6px;
+border: 1px solid #888;
+border-radius: 4px;
+}
+
+.gender-options {
+grid-column: 1 / -1;
+text-align: center;
+}
+
+.checkboxes {
+grid-column: 1 / -1;
+font-size: 0.9em;
+}
+
+button[type="submit"] {
+grid-column: 1 / -1;
+justify-self: center;
+background-color: #eaeaea;
+border: 1px solid #888;
+border-radius: 5px;
+padding: 5px 15px;
+cursor: pointer;
+}
+
+button[type="submit"]:hover {
+background-color: #ddd;
+}
+
+/* Footer with scriptures */
+footer {
+display: flex;
+justify-content: space-between;
+background-color: #fff;
+padding: 8px;
+}
+
+footer img {
+width: 70px;
+border: 1px solid #000;
+border-radius: 4px;
+}
+
+
+</style>
+
+
+
+
+</head>
+
+<body>
+<div id="formContainer">
+<button type="button" id="closeBtn">X</button>
+
+<header>
+<img src="images/jesus_feeds_5000.jpeg" alt="jesus_feeds_5000">
+<h1>Daily Feed</h1>
+<h2>Scripture a Day</h2>
+</header>
+
+<main>
+<h3>Sign Up for Daily Scripture Feed</h3>
+
+<form id="myForm">
+<label for="username">User Name:</label>
+<input type="text" id="username" name="username" required>
+
+<label for="password">Password:</label>
+<input type="password" id="password" name="password" required>
+
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required>
+
+<label>Gender:</label>
+<div class="gender-options">
+<input type="radio" id="male" name="gender" value="male" required>
+<label for="male">Male</label>
+<input type="radio" id="female" name="gender" value="female" required>
+<label for="female">Female</label>
+</div>
+
+<div class="checkboxes">
+<input type="checkbox" id="newsletter" name="newsletter">
+<label for="newsletter">Subscribe to newsletter</label><br>
+<input type="checkbox" id="conditions" name="conditions" required>
+<label for="conditions">I acknowledge the terms and conditions</label>
+</div>
+
+<button type="submit">Submit</button>
+</form>
+</main>
+
+<footer>
+<img src="images/old_testament.webp" alt="Old Testament">
+<img src="images/new_testament.webp" alt="New Testament">
+<img src="images/book_of_mormon.webp" alt="Book of Mormon">
+<img src="images/doctrine_and_covenants.webp" alt="Doctrine and Covenants">
+<img src="images/pearl_of_great_price.webp" alt="Pearl of Great Price">
+</footer>
+</div>
+
+<div id="output"></div>
+
+<script>
+document.getElementById("closeBtn").addEventListener("click", function () {
+document.getElementById("formContainer").style.display = "none";
+});
+
+const form = document.getElementById('myForm');
+const output = document.getElementById('output');
+
+form.addEventListener('submit', function (event) {
+event.preventDefault();
+const formData = new FormData(form);
+const entries = [];
+
+for (const [key, value] of formData.entries()) {
+entries.push(`<strong>${key}</strong>: ${value}`);
+}
+
+output.innerHTML = `
+<br> 
+<h3>Here is the data that would be sent to the server:</h3>
+<ul>${entries.map(item => `<li>${item}</li>`).join('')}</ul>
+`;
+});
+</script>
+</body>
+
+
+</html>
